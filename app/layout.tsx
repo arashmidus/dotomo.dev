@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     icon: "/Group3518721.png",
     apple: "/Group3518721.png",
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    viewportFit: 'cover',
+  },
 };
 
 export default function RootLayout({
@@ -23,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sf-pro">
+      <body className="font-sf-pro min-h-[100dvh] pb-[env(safe-area-inset-bottom)]">
         {children}
       </body>
     </html>
