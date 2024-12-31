@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sf-pro-display min-h-[100dvh] pb-[env(safe-area-inset-bottom)]">
+      <body className="font-[system-ui,-apple-system,BlinkMacSystemFont,'SF_Pro_Display'] min-h-[100dvh] pb-[env(safe-area-inset-bottom)]">
         {children}
       </body>
     </html>
