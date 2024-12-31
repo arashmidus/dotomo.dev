@@ -7,7 +7,7 @@ import { useFrame } from '@react-three/fiber'
 import Link from 'next/link'
 
 function BackgroundShader() {
-  const shaderRef = useRef()
+  const shaderRef = useRef<THREE.ShaderMaterial>(null)
   
   const uniforms = {
     uTime: { value: 0 },
