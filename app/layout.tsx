@@ -11,22 +11,22 @@ const inter = Inter({
 const sfPro = localFont({
   src: [
     {
-      path: '../public/fonts/SF-Pro-Display-Regular.woff2',
+      path: '../public/fonts/sf-pro-display-regular.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Medium.woff2',
+      path: '../public/fonts/sf-pro-display-medium.ttf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Semibold.woff2',
+      path: '../public/fonts/sf-pro-display-semibold.ttf',
       weight: '600',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Bold.woff2',
+      path: '../public/fonts/sf-pro-display-bold.ttf',
       weight: '700',
       style: 'normal',
     }
@@ -34,17 +34,18 @@ const sfPro = localFont({
   variable: '--font-sf-pro'
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
   title: "Dotomo",
   description: "Your task management companion",
   icons: {
     icon: "/Group3518721.png",
     apple: "/Group3518721.png",
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    viewportFit: 'cover',
   },
 };
 
