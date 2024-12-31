@@ -10,6 +10,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .font-bold {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), sans-serif;
+    font-weight: 700;
+  }
 }
 
 @layer base {
@@ -74,5 +78,25 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@layer base {
+  .font-sf-pro {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), sans-serif;
   }
 }

@@ -1,11 +1,11 @@
 'use client'
 import Image from 'next/image'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
-import { useFrame } from '@react-three/fiber'
-import Link from 'next/link'
 
+import Link from 'next/link'
+  
 function BackgroundShader() {
   const shaderRef = useRef<THREE.ShaderMaterial>(null)
   
@@ -111,7 +111,7 @@ function IOSNotification({ className = "", title, message, time }: {
 }) {
   return (
     <div className={`relative group transform transition-all duration-300 ${className}`}>
-      <div className="relative flex gap-4 p-4">
+      <div className="relative flex items-center gap-4 py-4 px-[0.7rem]">
         <div className="relative w-10 h-10 rounded-[9px] overflow-hidden flex-shrink-0">
           <Image
             src="/icon.png"
@@ -138,31 +138,42 @@ function NotificationCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [notifications, setNotifications] = useState([
     {
-      title: "Daily Task",
-      message: "Submit expense report due today at 3 PM",
-      time: "now"
+      title: "🚨 Expense Report Alert",
+      message: "Hey slacker, that expense report won't file itself! Due in 3 hours",
+      time: "57m ago"
     },
     {
-      title: "Reminder",
-      message: "Gather receipts and organize them",
-      time: "2m ago"
+      title: "ATTENTION MARINE! 🪖",
+      message: "YOUR MISSION: SECURE THOSE RECEIPTS AND SUBMIT REPORT! FAILURE IS NOT AN OPTION!",
+      time: "57m ago"
     },
     {
-      title: "Task Update",
-      message: "2 steps completed, 1 remaining",
-      time: "5m ago"
+      title: "Friendly Reminder ✨",
+      message: "That expense report is looking at you like a disappointed parent",
+      time: "57m ago"
+    },
+    {
+      title: "AI Assistant Notice",
+      message: "Based on my calculations, you're procrastinating again. Just saying.",
+      time: "57m ago"
+    },
+    {
+      title: "URGENT: Financial Command",
+      message: "Drop and give me 20 receipts, soldier! Report deadline approaching!",
+      time: "57m ago"
     }
   ])
 
   useEffect(() => {
-    if (notifications.length > 0) {
-      const timer = setTimeout(() => {
-        setNotifications([])
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
+    // Only cycle through notifications every 3 seconds
+    const intervalId = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % notifications.length)
+    }, 6996)
+
+    return () => clearInterval(intervalId)
   }, [notifications.length])
 
+  // Remove the notifications.length === 0 check since we want to keep showing them
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-[10%] flex justify-center">
       <div className="relative h-[180px] w-[420px] sm:w-[440px] overflow-hidden mt-3">
@@ -186,8 +197,8 @@ function NotificationCarousel() {
                 background: 'rgba(16, 16, 48, 0.4)',
                 borderRadius: '16px',
                 isolation: 'isolate',
-                backdropFilter: 'blur(100px)',
-                WebkitBackdropFilter: 'blur(100px)',
+                backdropFilter: 'blur(1000px)',
+                WebkitBackdropFilter: 'blur(1000px)',
                 transform: 'translate3d(0, 0, 0)',
                 backfaceVisibility: 'hidden',
                 perspective: '1000px',
@@ -198,10 +209,10 @@ function NotificationCarousel() {
             >
               <div className="absolute inset-0 backdrop-blur-[100px]" 
                 style={{
-                  background: 'rgba(41, 19, 39, 0.3)',
+                  background: 'rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
-                  WebkitBackdropFilter: 'blur(100px)',
-                  backdropFilter: 'blur(100px)'
+                  WebkitBackdropFilter: 'blur(1000px)',
+                  backdropFilter: 'blur(1000px)'
                 }}
               />
               
@@ -435,7 +446,7 @@ function Navigation() {
 
   return (
     <>
-      <nav className="flex gap-6">
+      <nav className="flex gap-6 items-center">
         <Link href="https://www.privacypolicies.com/live/528cecef-dd3d-48d6-9a69-189b3875d717" className="text-white/60 hover:text-white transition-colors">
           Privacy
         </Link>
@@ -445,6 +456,58 @@ function Navigation() {
         >
           Support
         </button>
+        
+        {/* Mobile only Open Source tag */}
+        <Link 
+          href="https://github.com/arashmidus/dotomo" 
+          className="block sm:hidden text-white/60 hover:text-white transition-colors group"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="flex items-center gap-2">
+            <svg 
+              viewBox="0 0 24 24" 
+              className="w-5 h-5 fill-current"
+              aria-hidden="true"
+            >
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+          </div>
+        </Link>
+        
+        {/* Desktop only Open Source tag */}
+        <div className="hidden sm:block">
+          <Link 
+            href="https://github.com/arashmidus/dotomo" 
+            className="text-white/60 hover:text-white transition-colors group"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="relative pl-[0.25rem] pr-[0.55rem] py-1 text-xs font-medium rounded-full 
+              bg-gradient-to-r from-purple-500/10 to-blue-500/10 
+              border border-white/10 backdrop-blur-sm
+              group-hover:border-white/20 transition-all duration-300
+              before:absolute before:inset-0 before:rounded-full 
+              before:bg-gradient-to-r before:from-purple-500/10 before:to-blue-500/10 
+              before:blur-xl before:opacity-50 before:-z-10"
+            >
+              <div className="flex items-center gap-2">
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className="w-5 h-5 fill-current"
+                  aria-hidden="true"
+                >
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                <span className="bg-gradient-to-r from-purple-200 to-blue-200 text-transparent bg-clip-text">
+                  Open Source
+                </span>
+              </div>
+            </div>
+          </Link>
+          
+          
+        </div>
       </nav>
       <SupportModal isOpen={isSupportOpen} onClose={() => setIsSupportOpen(false)} />
     </>
@@ -455,11 +518,11 @@ export default function Home() {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [showNotification, setShowNotification] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setSubmitStatus('idle')
 
     try {
       const response = await fetch('/api/testflight-invite', {
@@ -472,11 +535,13 @@ export default function Home() {
 
       if (!response.ok) throw new Error('Failed to send invite')
       
-      setSubmitStatus('success')
       setEmail('')
+      setSubmitStatus('success')
+      setShowNotification(true) // Show success notification
     } catch (error) {
       console.error('Error:', error)
       setSubmitStatus('error')
+      setShowNotification(true) // Show error notification
     } finally {
       setIsSubmitting(false)
     }
@@ -484,6 +549,13 @@ export default function Home() {
 
   return (
     <main className="h-screen relative overflow-hidden font-['SF_Pro_Display']">
+      {showNotification && (
+        <FloatingNotification 
+          status={submitStatus === 'success' ? 'success' : 'error'}
+          onClose={() => setShowNotification(false)}
+        />
+      )}
+
       {/* Background shader */}
       <div className="absolute inset-0 -z-10">
         <Canvas camera={{ position: [0, 0, 1] }} orthographic dpr={[1, 2]}>
@@ -508,6 +580,7 @@ export default function Home() {
             <span className="text-xs px-2 py-0.5 bg-white/10 rounded-full text-white/70 backdrop-blur-sm">
               BETA
             </span>
+           
           </div>
           <Navigation />
         </header>
@@ -515,21 +588,76 @@ export default function Home() {
         {/* Main Content */}
         <div className="flex-1 flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto w-full relative z-10">
           {/* Left Column - Hero Text */}
-          <div className="flex-1 space-y-6 md:space-y-8 px-8 md:px-12 lg:px-16 mt-12 sm:mt-12 text-center lg:text-left 
+          {/* <Link 
+                    href="https://github.com/arashmidus/dotomo" 
+                    className="block sm:hidden text-white/60 hover:text-white transition-colors group mt-6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="relative pl-[0.25rem] pr-[0.85rem] py-1 text-xs font-medium rounded-full 
+                      bg-gradient-to-r from-purple-500/10 to-blue-500/10 
+                      border border-white/10 backdrop-blur-sm
+                      group-hover:border-white/20 transition-all duration-300
+                      before:absolute before:inset-0 before:rounded-full 
+                      before:bg-gradient-to-r before:from-purple-500/10 before:to-blue-500/10 
+                      before:blur-xl before:opacity-50 before:-z-10"
+                    >
+                      <div className="flex items-center gap-2">
+                        <svg 
+                          viewBox="0 0 24 24" 
+                          className="w-5 h-5 fill-current"
+                          aria-hidden="true"
+                        >
+                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        <span className="bg-gradient-to-r from-purple-200 to-blue-200 text-transparent bg-clip-text">
+                          Open Source
+                        </span>
+                      </div>
+                    </div>
+                  </Link> */}
+          <div className="flex-1 space-y-6 md:space-y-8 px-8 md:px-12 lg:px-16 mt-9 sm:mt-12 text-center lg:text-left 
             lg:translate-x-[7%] relative z-10">
+            {/* Mobile Open Source Tag */}
+            
+
             <div className="space-y-6 sm:space-y-6">
-              <h1 className="text-6xl md:text-6xl lg:text-7xl xl:text-[100px] font-bold leading-[0.9] tracking-tight text-white">
-                Bedtime
+              
+              <h1 className="text-6xl md:text-5xl lg:text-5xl xl:text-[81px] font-bold leading-[0.9] tracking-tight text-white 
+                font-['SF_Pro_Display'] antialiased relative">
+                <span className="relative inline-block">
+                  <span className="relative z-10">Bedtime</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-blue-500/30 
+                    blur-2xl opacity-50 animate-pulse" />
+                </span>
                 <br />
-                Notes
+                <span className="relative inline-block">
+                  <span className="relative z-10">Notes</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 
+                    blur-2xl opacity-50 animate-pulse [animation-delay:200ms]" />
+                </span>
                 <br />
-                Reminded
+                <span className="relative inline-block">
+                  <span className="relative z-10">Reminded</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-teal-500/30 
+                    blur-2xl opacity-50 animate-pulse [animation-delay:400ms]" />
+                </span>
                 <br />
-                Tomorrow
+                <span className="relative inline-block">
+                  <span className="relative z-10">Tomorrow</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/30 to-emerald-500/30 
+                    blur-2xl opacity-50 animate-pulse [animation-delay:600ms]" />
+                </span>
+                <br />
+                {/* <span className="relative inline-block">
+                  <span className="relative z-10">With AI</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/30 to-purple-500/30 
+                    blur-2xl opacity-50 animate-pulse [animation-delay:800ms]" />
+                </span> */}
               </h1>
               <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-4">
                 <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-4 w-full sm:w-auto">
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
                     <div className="flex items-center gap-2">
                       <input
                         type="email"
@@ -557,6 +685,7 @@ export default function Home() {
                         )}
                       </button>
                     </div>
+                    <p className="text-white/50 text-[11px]">Get a TestFlight code for early access</p>
                   </form>
                   {/* Floating notification */}
                   {submitStatus !== 'idle' && (
@@ -565,6 +694,36 @@ export default function Home() {
                       onClose={() => setSubmitStatus('idle')} 
                     />
                   )}
+                  
+                  {/* <Link 
+                    href="https://github.com/arashmidus/dotomo" 
+                    className="block sm:hidden text-white/60 hover:text-white transition-colors group"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="relative pr-[0.25rem] pl-2 py-1 text-xs font-medium rounded-full 
+                      bg-gradient-to-r from-purple-500/10 to-blue-500/10 
+                      border border-white/10 backdrop-blur-sm
+                      group-hover:border-white/20 transition-all duration-300
+                      before:absolute before:inset-0 before:rounded-full 
+                      before:bg-gradient-to-r before:from-purple-500/10 before:to-blue-500/10 
+                      before:blur-xl before:opacity-50 before:-z-10"
+                    >
+                      <div className="flex items-center gap-2">
+                        <svg 
+                          viewBox="0 0 24 24" 
+                          className="w-5 h-5 fill-current"
+                          aria-hidden="true"
+                        >
+                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        <span className="bg-gradient-to-r from-purple-200 to-blue-200 text-transparent bg-clip-text">
+                          Open Source
+                        </span>
+                      </div>
+                    </div>
+                  </Link> */}
+                  
                   {/* Mobile App Store badge */}
                   <div className="block sm:hidden w-32">
                     <Image
