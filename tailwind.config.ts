@@ -59,6 +59,7 @@ const config: Config = {
   		fontFamily: {
   			sans: ['SF Pro Display', 'system-ui', 'sans-serif'],
   			'sf-pro': ['var(--font-sf-pro-display)'],
+  			'sf-pro-display': ['SF Pro Display', 'system-ui', 'sans-serif'],
   		},
   	}
   },

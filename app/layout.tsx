@@ -7,17 +7,18 @@ const inter = Inter({
   variable: '--font-inter'
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
   title: "Dotomo",
   description: "Your task management companion",
   icons: {
     icon: "/Group3518721.png",
     apple: "/Group3518721.png",
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    viewportFit: 'cover',
   },
 };
 
@@ -27,9 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sf-pro min-h-[100dvh] pb-[env(safe-area-inset-bottom)]">
-        {children}
+    <html lang="en">
+      <body className="font-sf-pro-display min-h-[100dvh] pb-[env(safe-area-inset-bottom)] flex flex-col">
+        <main className="flex-1">
+          {children}
+        </main>
       </body>
     </html>
   );
