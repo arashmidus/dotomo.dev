@@ -136,8 +136,7 @@ function IOSNotification({ className = "", title, message, time }: {
 
 function NotificationCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
-  
-  const notifications = [
+  const [notifications, setNotifications] = useState([
     {
       title: "Daily Task",
       message: "Submit expense report due today at 3 PM",
@@ -153,7 +152,7 @@ function NotificationCarousel() {
       message: "2 steps completed, 1 remaining",
       time: "5m ago"
     }
-  ]
+  ])
 
   useEffect(() => {
     if (notifications.length > 0) {
@@ -162,7 +161,7 @@ function NotificationCarousel() {
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [notifications, notifications.length])
+  }, [notifications.length])
 
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-[10%] flex justify-center">
