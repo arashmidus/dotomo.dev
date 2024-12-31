@@ -1,10 +1,37 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 
 const inter = Inter({ 
   subsets: ["latin"],
   variable: '--font-inter'
+});
+
+const sfPro = localFont({
+  src: [
+    {
+      path: '../public/fonts/SF-Pro-Display-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/SF-Pro-Display-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/SF-Pro-Display-Semibold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/SF-Pro-Display-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    }
+  ],
+  variable: '--font-sf-pro'
 });
 
 export const metadata: Metadata = {
@@ -28,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-[system-ui,-apple-system,BlinkMacSystemFont,'SF_Pro_Display'] min-h-[100dvh] pb-[env(safe-area-inset-bottom)]">
+      <body className={`${sfPro.variable} font-sf-pro min-h-[100dvh] pb-[env(safe-area-inset-bottom)]`}>
         {children}
       </body>
     </html>
