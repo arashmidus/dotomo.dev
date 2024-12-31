@@ -156,11 +156,13 @@ function NotificationCarousel() {
   ]
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % notifications.length)
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [])
+    if (notifications.length > 0) {
+      const timer = setTimeout(() => {
+        setNotifications([])
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [notifications, notifications.length])
 
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-[10%] flex justify-center">
@@ -566,10 +568,11 @@ export default function Home() {
                   )}
                   {/* Mobile App Store badge */}
                   <div className="block sm:hidden w-32">
-                    <img
+                    <Image
                       src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
                       alt="Download on the App Store"
-                      className="w-full"
+                      width={128}
+                      height={40}
                     />
                   </div>
                 </div>
@@ -621,10 +624,11 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4 order-1 md:order-2">
               <div className="">
-                <img
+                <Image
                   src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
                   alt="Download on the App Store"
-                  className="w-auto"
+                  width={128}
+                  height={40}
                 />
               </div>
             </div>

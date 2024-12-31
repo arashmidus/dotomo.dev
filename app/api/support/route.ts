@@ -5,20 +5,12 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     
-    // Validate required fields
-    if (!body.name || !body.email || !body.notes) {
-      return NextResponse.json({ 
-        success: false,
-        message: "Missing required fields"
-      }, { status: 400 })
-    }
-
     // Create support request
-    const support = await prisma.support.create({
+    await prisma.support.create({
       data: {
         name: body.name,
         email: body.email,
-        notes: body.notes
+        notes: body.notes,
       }
     })
 
@@ -28,7 +20,6 @@ export async function POST(request: Request) {
     })
 
   } catch (error) {
-    console.error('Support request error:', error)
     return NextResponse.json({ 
       success: false,
       message: "Failed to submit support request"
