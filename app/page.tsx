@@ -138,28 +138,28 @@ function NotificationCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [notifications, setNotifications] = useState([
     {
-      title: "🚨 Expense Report Alert",
-      message: "Hey slacker, that expense report won't file itself! Due in 3 hours",
+      title: "Dotomo",
+      message: "🏰 Your room looks like a war zone. Time to restore order to this chaos! ⚔️",
       time: "57m ago"
     },
     {
-      title: "ATTENTION MARINE! 🪖",
-      message: "YOUR MISSION: SECURE THOSE RECEIPTS AND SUBMIT REPORT! FAILURE IS NOT AN OPTION!",
+      title: "Dotomo", 
+      message: "⚠️ ATTENTION: Those clothes on the floor are staging a rebellion. Crush it now! 👕",
       time: "57m ago"
     },
     {
-      title: "Friendly Reminder ✨",
-      message: "That expense report is looking at you like a disappointed parent",
+      title: "Dotomo",
+      message: "😱 Your mom would have a heart attack if she saw this mess. Clean it up! 🧹",
       time: "57m ago"
     },
     {
-      title: "AI Assistant Notice",
-      message: "Based on my calculations, you're procrastinating again. Just saying.",
+      title: "Dotomo",
+      message: "🚨 Warning: Dust bunnies under your bed have formed their own civilization 🐰",
       time: "57m ago"
     },
     {
-      title: "URGENT: Financial Command",
-      message: "Drop and give me 20 receipts, soldier! Report deadline approaching!",
+      title: "Dotomo",
+      message: "🌪️ This isn't organized chaos, it's just chaos. Time for Operation Clean Room! ✨",
       time: "57m ago"
     }
   ])
@@ -295,7 +295,7 @@ function FloatingNotification({ status, onClose }: {
                 </p>
                 <p className="text-white/80 text-[14px] leading-snug line-clamp-2">
                   {status === 'success' 
-                    ? "You've been added to the waitlist! We'll send you an invite once the app is approved."
+                    ? "You'll receive a TestFlight invite email shortly. Check your inbox!"
                     : "Something went wrong. Please try again."}
                 </p>
               </div>
@@ -537,11 +537,11 @@ export default function Home() {
       
       setEmail('')
       setSubmitStatus('success')
-      setShowNotification(true) // Show success notification
+      setShowNotification(true)
     } catch (error) {
       console.error('Error:', error)
       setSubmitStatus('error')
-      setShowNotification(true) // Show error notification
+      setShowNotification(true)
     } finally {
       setIsSubmitting(false)
     }
