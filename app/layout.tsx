@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Dotomo - Capture Nighttime Tasks Effortlessly",
     description: "Transform your evening thoughts into morning reminders with Dotomo's seamless task capture and notification system.",
     images: [{
-      url: 'https://dotomo.dev/og.png',
+      url: 'https://dotomo.dev/@og.png',
       width: 1200,
       height: 630,
       alt: 'Dotomo App - Nighttime Task Management'
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Dotomo - Capture Nighttime Tasks Effortlessly",
     description: "Transform your evening thoughts into morning reminders with Dotomo's seamless task capture and notification system.",
-    images: ['https://dotomo.dev/og.png'],
+    images: ['https://dotomo.dev/@og.png'],
   }
 };
 
