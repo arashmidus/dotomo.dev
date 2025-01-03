@@ -672,6 +672,7 @@ export default function Home() {
                           text-white placeholder-white/50 outline-none focus:bg-white/15 
                           transition-all duration-300 disabled:opacity-50"
                       />
+                      {/* Desktop submit button */}
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -688,6 +689,20 @@ export default function Home() {
                         )}
                       </button>
                     </div>
+                    {/* Mobile submit button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="sm:hidden h-12 rounded-xl bg-white/10 backdrop-blur-sm 
+                        hover:bg-white/20 transition-all duration-300 text-white font-medium
+                        disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto" />
+                      ) : (
+                        'Get Early Access'
+                      )}
+                    </button>
                     <p className="text-white/50 text-[11px]">Get a TestFlight code for early access</p>
                   </form>
                   {/* Floating notification */}
