@@ -42,11 +42,30 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: "Dotomo",
-  description: "Your task management companion",
+  description: "Capture Nighttime Tasks Effortlessly!",
   icons: {
     icon: "/Group3518721.png",
     apple: "/Group3518721.png",
   },
+  openGraph: {
+    title: "Dotomo - Capture Nighttime Tasks Effortlessly",
+    description: "Transform your evening thoughts into morning reminders with Dotomo's seamless task capture and notification system.",
+    images: [{
+      url: 'https://dotomo.dev/og.png',
+      width: 1200,
+      height: 630,
+      alt: 'Dotomo App - Nighttime Task Management'
+    }],
+    type: 'website',
+    url: 'https://dotomo.dev',
+    siteName: 'Dotomo',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Dotomo - Capture Nighttime Tasks Effortlessly",
+    description: "Transform your evening thoughts into morning reminders with Dotomo's seamless task capture and notification system.",
+    images: ['https://dotomo.dev/og.png'],
+  }
 };
 
 export default function RootLayout({
