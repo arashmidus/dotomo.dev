@@ -5,7 +5,8 @@ import { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 
 import Link from 'next/link'
-  
+import { Analytics } from '@vercel/analytics/react'
+
 function BackgroundShader() {
   const shaderRef = useRef<THREE.ShaderMaterial>(null)
   
@@ -549,6 +550,8 @@ export default function Home() {
 
   return (
     <main className="h-screen relative overflow-hidden font-['SF_Pro_Display']">
+      <Analytics />
+
       {showNotification && (
         <FloatingNotification 
           status={submitStatus === 'success' ? 'success' : 'error'}
