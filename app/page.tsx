@@ -712,7 +712,7 @@ export default function Home() {
                       onClose={() => setSubmitStatus('idle')} 
                     />
                   )}
-                  
+                  {/* testing entryyy */}
                   {/* <Link 
                     href="https://github.com/arashmidus/dotomo" 
                     className="block sm:hidden text-white/60 hover:text-white transition-colors group"
