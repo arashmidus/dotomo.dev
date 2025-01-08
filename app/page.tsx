@@ -626,7 +626,24 @@ export default function Home() {
 
             <div className="space-y-6 sm:space-y-6">
               
-              <h1 className="text-6xl md:text-5xl lg:text-5xl xl:text-[81px] font-bold leading-[0.9] tracking-tight text-white 
+              {/* Product Hunt Badge */}
+              <div className="mb-3 md:text-left text-center w-full">
+                <a 
+                  href="https://www.producthunt.com/posts/dotomo?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-dotomo" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <Image
+                    src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=752380&theme=light&period=daily"
+                    alt="Dotomo - An intuitive note taker where bedtime notes become reminders | Product Hunt"
+                    width={200}
+                    height={43}
+                  />
+                </a>
+              </div>
+
+              <h1 className="text-5xl md:text-5xl lg:text-5xl xl:text-[81px] font-bold leading-[0.9] tracking-tight text-white 
                 font-['SF_Pro_Display'] antialiased relative">
                 <span className="relative inline-block">
                   <span className="relative z-10">Bedtime</span>
@@ -661,59 +678,61 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-4">
                 <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-4 w-full sm:w-auto">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        disabled={isSubmitting}
-                        className="flex-1 sm:w-64 h-12 px-4 rounded-xl bg-white/10 backdrop-blur-sm 
-                          text-white placeholder-white/50 outline-none focus:bg-white/15 
-                          transition-all duration-300 disabled:opacity-50"
-                      />
-                      {/* Desktop submit button */}
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="hidden sm:flex h-12 px-4 rounded-xl bg-white/10 backdrop-blur-sm 
-                          hover:bg-white/20 transition-all duration-300 items-center justify-center
-                          disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {isSubmitting ? (
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        ) : (
-                          <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                    {/* Mobile submit button */}
+                  <div className="relative flex items-center">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      disabled={isSubmitting}
+                      className="w-full h-12 px-4 pr-[52px] rounded-xl bg-white/10 backdrop-blur-sm 
+                        text-white placeholder-white/50 outline-none focus:bg-white/15 
+                        transition-all duration-300 disabled:opacity-50"
+                    />
+                    {/* Mobile submit button (inside input) */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="sm:hidden h-12 rounded-xl bg-white/10 backdrop-blur-sm 
-                        hover:bg-white/20 transition-all duration-300 text-white font-medium
-                        disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="sm:hidden absolute right-2 h-9 w-9 rounded-lg bg-white/10 
+                        hover:bg-white/20 transition-all duration-300 text-white
+                        disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                     >
                       {isSubmitting ? (
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto" />
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       ) : (
-                        'Get Early Access'
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                       )}
                     </button>
-                    <p className="text-white/50 text-[11px]">Get a TestFlight code for early access</p>
-                  </form>
-                  {/* Floating notification */}
-                  {submitStatus !== 'idle' && (
-                    <FloatingNotification 
-                      status={submitStatus} 
-                      onClose={() => setSubmitStatus('idle')} 
-                    />
-                  )}
-                  {/* testing entryyy */}
-                  {/* <Link 
+                    {/* Desktop submit button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="hidden sm:flex h-12 px-4 rounded-xl bg-white/10 backdrop-blur-sm 
+                        hover:bg-white/20 transition-all duration-300 items-center justify-center
+                        disabled:opacity-50 disabled:cursor-not-allowed ml-2"
+                    >
+                      {isSubmitting ? (
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      ) : (
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                  <p className="text-white/50 text-[11px]">Get a TestFlight code for early access</p>
+                </form>
+                {/* Floating notification */}
+                {submitStatus !== 'idle' && (
+                  <FloatingNotification 
+                    status={submitStatus} 
+                    onClose={() => setSubmitStatus('idle')} 
+                  />
+                )}
+                {/* testing entryyy */}
+                {/* <Link 
                     href="https://github.com/arashmidus/dotomo" 
                     className="block sm:hidden text-white/60 hover:text-white transition-colors group"
                     target="_blank"

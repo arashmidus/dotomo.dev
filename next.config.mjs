@@ -4,7 +4,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: ['tools.applemediaservices.com'],
+    domains: ['api.producthunt.com', 'tools.applemediaservices.com'],
   },
 }
 
