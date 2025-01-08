@@ -821,7 +821,7 @@ export default function Home() {
               <div className="">
                 <Image
                   src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
-                  alt="Download on the App Store"
+                  alt="Download Dotomo on the App Store"
                   width={128}
                   height={40}
                 />
