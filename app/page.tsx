@@ -626,21 +626,38 @@ export default function Home() {
 
             <div className="space-y-6 sm:space-y-6">
               
-              {/* Product Hunt Badge */}
-              <div className="mb-3 md:text-left text-center w-full">
+              {/* Product Hunt Badge - Now mobile only */}
+              <div className="mb-3 md:text-left text-center w-full block sm:hidden">
                 <a 
                   href="https://www.producthunt.com/posts/dotomo?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-dotomo" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block"
+                  className="hidden sm:block relative z-20 cursor-pointer"
                 >
                   <Image
                     src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=752380&theme=light&period=daily"
                     alt="Dotomo - An intuitive note taker where bedtime notes become reminders | Product Hunt"
                     width={200}
                     height={43}
+                    className="pointer-events-auto"
                   />
                 </a>
+              </div>
+
+              {/* App Store Badge - Desktop only */}
+              <div className="mb-3 md:text-left text-center w-full hidden sm:block">
+                <Link 
+                  href="https://apps.apple.com/us/app/dotomo-ai-task-reminder/id6739987388"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
+                    alt="Download on the App Store"
+                    width={128}
+                    height={40}
+                  />
+                </Link>
               </div>
 
               <h1 className="text-5xl md:text-5xl lg:text-5xl xl:text-[81px] font-bold leading-[0.9] tracking-tight text-white 
@@ -678,7 +695,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-4">
                 <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-4 w-full sm:w-auto">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
-                  <div className="relative flex items-center">
+                  {/* <div className="relative flex items-center">
                     <input
                       type="email"
                       value={email}
@@ -688,9 +705,9 @@ export default function Home() {
                       className="w-full h-12 px-4 pr-[52px] rounded-xl bg-white/10 backdrop-blur-sm 
                         text-white placeholder-white/50 outline-none focus:bg-white/15 
                         transition-all duration-300 disabled:opacity-50"
-                    />
+                    /> */}
                     {/* Mobile submit button (inside input) */}
-                    <button
+                    {/* <button
                       type="submit"
                       disabled={isSubmitting}
                       className="sm:hidden absolute right-2 h-9 w-9 rounded-lg bg-white/10 
@@ -704,9 +721,9 @@ export default function Home() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                       )}
-                    </button>
+                    </button> */}
                     {/* Desktop submit button */}
-                    <button
+                    {/* <button
                       type="submit"
                       disabled={isSubmitting}
                       className="hidden sm:flex h-12 px-4 rounded-xl bg-white/10 backdrop-blur-sm 
@@ -721,8 +738,22 @@ export default function Home() {
                         </svg>
                       )}
                     </button>
+                  </div> */}
+                  <div className="block sm:hidden w-32 mx-auto -mt-3">
+                    <Link 
+                      href="https://apps.apple.com/us/app/dotomo-ai-task-reminder/id6739987388"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
+                        alt="Download on the App Store"
+                        width={128}
+                        height={40}
+                      />
+                    </Link>
                   </div>
-                  <p className="text-white/50 text-[11px]">Get a TestFlight code for early access</p>
+                  <p className="text-white/50 text-[11px]">Dotomo is 100% free and ad-free.</p>
                 </form>
                 {/* Floating notification */}
                 {submitStatus !== 'idle' && (
@@ -762,21 +793,14 @@ export default function Home() {
                   </Link> */}
                   
                   {/* Mobile App Store badge */}
-                  <div className="block sm:hidden w-32">
-                    <Image
-                      src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
-                      alt="Download on the App Store"
-                      width={128}
-                      height={40}
-                    />
-                  </div>
+                  
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Column - iPhone Screenshot */}
-          <div className="flex-1 flex justify-center items-center w-full max-w-[100vw] lg:max-w-none mt-8 lg:mt-0 lg:px-16 
+          <div className="flex-1 flex justify-center items-center w-full max-w-[100vw] lg:max-w-none mt-6 lg:mt-0 lg:px-16 
             relative lg:absolute lg:right-[0%] lg:top-[20%] lg:translate-x-[19%] z-0">
             <div className="relative w-full max-w-[420px] mx-auto px-4 lg:px-0">
               {/* Balanced Decorative Elements */}
@@ -818,14 +842,28 @@ export default function Home() {
               © 2024 Dotomo. All rights reserved.
             </div>
             <div className="flex items-center gap-4 order-1 md:order-2">
-              <div className="">
+              <a 
+                href="https://www.producthunt.com/posts/dotomo?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-dotomo" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:block relative z-20 cursor-pointer"
+              >
+                <Image
+                  src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=752380&theme=light&period=daily"
+                  alt="Dotomo - An intuitive note taker where bedtime notes become reminders | Product Hunt"
+                  width={200}
+                  height={43}
+                  className="pointer-events-auto"
+                />
+              </a>
+              {/* <div className="">
                 <Image
                   src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us"
                   alt="Download Dotomo on the App Store"
                   width={128}
                   height={40}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
